@@ -35,13 +35,17 @@
         <div class="col-md-12">
             <table id="myTable" class="table table-striped table-hover table-responsive" style="width:100%">
                 <col width="15%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
                 <col width="15%">
                 <col width="15%">
-                <col width="35%">
+                <col width="15%">
 
 
                 <thead>
                     <tr>
+                        <th>{{ trans('labels.image') }}</th>
                         <th>{{ trans('labels.name') }}</th>
                         <th>{{ trans('labels.model') }}</th>
                         <th>{{ trans('labels.firmwareVersion') }}</th>
@@ -55,6 +59,15 @@
                 <tbody>
                     @foreach($routers_list as $routers)
                     <tr>
+                        @if($routers->model === 'Cisco 2911')
+                        <td>
+                            <img class="<?php echo trim($routers['model'], ";"); ?>" src="/img/2900.jpg">
+                        </td>
+                        @elseif($routers->model === 'Cisco 4331')
+                        <td>
+                            <img class="<?php echo trim($routers['model'], ";"); ?>" src="/img/isr4000.jpg ">
+                        </td>
+                        @endif
                         <td> {{ $routers->name }} </td>
                         <td> {{ $routers->model }} </td>
                         <td> {{ $routers->firmware }} </td>
@@ -74,7 +87,7 @@
                             <a class="btn btn-default" href="{{ route('router.config', ['serialNumber' => $routers->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('router.delete.configuration', ['serialNumber' => $routers->serialNumber]) }}"><span></span> {{ trans('labels.deleteConfiguration') }}</a>
+                            <a class="btn btn-warning" href="{{ route('router.delete.configuration', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
                         </td>
                         <td>
                             <a class="btn btn-danger" disabled="disabled" href="{{ route('router.destroy.confirm', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>

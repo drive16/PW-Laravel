@@ -29,6 +29,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
+            <div class="col-md-offset-10 col-xs-5">
+                <a class="btn btn-default" href="{{ route('router.index') }}">{{ trans('labels.routerGoBack') }}</a>
+            </div>
+            
             <h3 align="center">{{ $router->name }} - {{ trans('labels.configuration')}}</h3>
             <div id="configuration">
             <dl>
@@ -62,12 +66,12 @@
             </div>
         </div>
         
-        <div class="col-md-offset-3 col-md-6">
+        <div class="col-md-5 col-md-offset-4">
             <tbody>
                 <tr>
                     <td>{{ trans('labels.saveAs') }}</td>
                     <td><input type="text" id="inputFileNameToSaveAs"></input></td>
-                    <td><a class="btn btn-info" onclick="saveTextAsFile()">{{ trans('labels.saveText')}}</a></td>
+                    <td><a class="btn btn-info" onclick="saveTextAsFile()"><span class="glyphicon glyphicon-download-alt"></span> {{ trans('labels.saveText')}}</a></td>
                 </tr>
             </tbody>
         </div>

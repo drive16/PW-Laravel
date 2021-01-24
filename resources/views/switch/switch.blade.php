@@ -37,12 +37,16 @@
         <div class="col-md-12">
             <table id="myTable" class="table table-striped table-hover table-responsive" style="width:100%">
                 <col width="15%">
+                <col width="10%">
+                <col width="10%">
+                <col width="10%">
                 <col width="15%">
                 <col width="15%">
-                <col width="35%">
+                <col width="15%">
 
                 <thead>
                     <tr>
+                        <th>{{ trans('labels.image') }}</th>
                         <th>{{ trans('labels.name') }}</th>
                         <th>{{ trans('labels.model') }}</th>
                         <th>{{ trans('labels.firmwareVersion') }}</th>
@@ -56,6 +60,15 @@
                 <tbody>
                     @foreach($switches_list as $switches)
                     <tr>
+                        @if($switches->model === 'C2960-X')
+                        <td>
+                            <img id="<?php echo trim($switches['model'], ";"); ?>" src="/img/c2960-x.jpeg">
+                        </td>
+                        @elseif($switches->model === 'C2960-S')
+                        <td>
+                            <img id="<?php echo trim($switches['model'], ";"); ?>" src="/img/c2960-s.jpg ">
+                        </td>
+                        @endif
                         <td> {{ $switches->name }} </td>
                         <td> {{ $switches->model }} </td>
                         <td> {{ $switches->firmware }} </td>
@@ -75,7 +88,7 @@
                             <a class="btn btn-default" href="{{ route('switch.config', ['serialNumber' => $switches->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('switch.delete.configuration', ['serialNumber' => $switches->serialNumber]) }}"><span></span> {{ trans('labels.deleteConfiguration') }}</a>
+                            <a class="btn btn-warning" href="{{ route('switch.delete.configuration', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
                         </td>
                         <td>
                             <a class="btn btn-danger" disabled="disabled" href="{{ route('switch.destroy.confirm', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
@@ -85,6 +98,23 @@
                     @endforeach
                 </tbody>
             </table>
+<!--            <script>
+                $('document').ready(function () {
+                    var switches = <?php echo json_encode($switches_list) ?>;
+                    for(var i = 0; i < switches.length; i++) {
+                        var testing = document.createElement('p');
+                        testing.innerHTML = 'Prova';
+                        document.getElementById('C2960-X;').appendChild(testing);
+                    }
+                    if (switches["model"] === "C2960-X;") {
+                        var testing = document.createElement('p');
+                        testing.innerHTML = 'Prova';
+                        document.getElementById('test').appendChild(testing);
+                    } else if (switches["model"] === "C2960-S;") {
+
+                    }
+                });
+            </script>-->
         </div>
     </div>
 </div>

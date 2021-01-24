@@ -3,6 +3,7 @@
 return [
     'networkConfigurator' => 'Network Devices Configurator',
     'myDevices' => 'My Devices',
+    'image' => 'Image',
     'login' => 'Login',
     'registration' => 'Registration',
     'registerNow' => 'Register now',

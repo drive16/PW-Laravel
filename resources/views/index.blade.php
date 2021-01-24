@@ -51,6 +51,20 @@
                             <p>{{ trans('labels.oldGeneration') }}</p>
                         </div>
                     </div>
+                    
+                    <div class="item">
+                        <img src="{{ url('/') }}/img/c2960-x.jpeg" alt="Catalyst C2960-X">
+                        <div class="carousel-caption hidden-xs hidden-sm hidden-md">
+                            <h4>Catalyst C2960-X</h4>
+                        </div>
+                    </div>
+                    
+                    <div class="item">
+                        <img src="{{ url('/') }}/img/c2960-s.jpg" alt="Catalyst C2960-S">
+                        <div class="carousel-caption hidden-xs hidden-sm hidden-md">
+                            <h4>Catalyst C2960-S</h4>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Left and right controls -->

@@ -3,6 +3,7 @@
 return [
     'networkConfigurator' => 'Configuratore di Apparati di Rete',
     'myDevices' => 'I miei apparati',
+    'image' => 'Immagine',
     'login' => 'Login',
     'registration' => 'Registrazione',
     'registerNow' => 'Registrati ora',
