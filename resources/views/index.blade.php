@@ -8,8 +8,8 @@
 
 @section('left_navbar')
 <li class="active"><a href="{{ route('home') }}">Home</a></li>
-<li><a href="{{ route('router.index') }}">Routers</a></li>
-<li><a href="{{ route('switch.index') }}">Switches</a></li>
+<li><a href="{{ route('router.list') }}">Routers</a></li>
+<li><a href="{{ route('switch.list') }}">Switches</a></li>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('labels.quickConfiguration') }}<b class="caret"></b></a>
     <ul class="dropdown-menu">

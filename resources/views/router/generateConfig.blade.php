@@ -152,13 +152,7 @@
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="hidden" name="id" value="{{  $router->serialNumber }}"/>
                             <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-save"></span> {{ trans('labels.generate') }}</label>
-                            <input id="mySubmit" type="submit" value="Generate" class="hidden" onclick="event.preventDefault();
-                                            checkHostname(this);
-                                            checkUsername(this);
-                                            checkPassword(this);
-                                            checkDomainName(this);
-                                            checkIPAddress(this);
-                                            checkGateway(this);"/>
+                            <input id="mySubmit" type="submit" value="Generate" class="hidden" onclick="event.preventDefault(); checkDeviceFields(this);"/>
                         </div>
                     </div>
 

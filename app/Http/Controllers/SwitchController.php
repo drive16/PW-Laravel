@@ -43,6 +43,23 @@ class SwitchController extends Controller
         return Redirect::to(route('switch.index'));
     }
     
+    public function search(Request $request) {
+        $dl = new DataLayer();
+        $userID = Auth::user()->id;
+        $switches_list = $dl->searchSwitches($request->input('keyword'), $userID);
+        
+        return view('switch.switchList')->with('switches_list', $switches_list);
+    }
+    
+    public function list() {
+        
+        $dl = new DataLayer();
+        $userID = Auth::user()->id;
+        $switches_list = $dl->listSwitches($userID);
+        
+        return view('switch.switchList')->with('switches_list', $switches_list);
+    }
+    
     public function destroy($serialNumber)
     {
         $dl = new DataLayer();

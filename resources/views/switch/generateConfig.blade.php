@@ -70,7 +70,9 @@
                     <div class="form-group">
                         <label for="interface" class="col-md-3">{{ trans('labels.interface') }}</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="interface" name="interface" onchange="getInt()"><option value="" selected data-default>{{ trans('labels.selectInterface') }}</option><option>Vlan 1</option></select>
+                            <input class="form-control" type="text" id="interface" name="interface" oninput="getInt()" placeholder="{{ trans('labels.selectInterface') }}">
+                            <span class="invalid-input" id="invalid-interface"></span>
+<!--                            <select class="form-control" id="interface" name="interface" onchange="getInt()"><option value="" selected data-default>{{ trans('labels.selectInterface') }}</option><option>Vlan 1</option></select>-->
                         </div>
                         <script>
                             function getInt() {
@@ -81,8 +83,8 @@
                                 } else {
                                     document.getElementById("ipaddress-form").style.display = "";
                                     document.getElementById("subnetmask-form").style.display = "";
-                                    document.getElementById("ipAddress").innerHTML = interface + " IP address";
-                                    document.getElementById("subnetMask").innerHTML = interface + " subnet mask";
+                                    document.getElementById("ipAddress").innerHTML = "Interface VLAN " + interface + " IP address";
+                                    document.getElementById("subnetMask").innerHTML = "Interface VLAN " + interface + " subnet mask";
                                 }
                             }
                         </script>
@@ -122,7 +124,7 @@
                         <div class="col-sm-9 col-sm-offset-3">
                             <input type="hidden" name="id" value="{{  $switch->serialNumber }}"/>
                             <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-save"></span> {{ trans('labels.generate') }}</label>
-                            <input id="mySubmit" type="submit" value="Generate" class="hidden" onclick="event.preventDefault(); checkHostname(this); checkUsername(this); checkPassword(this); checkDomainName(this); checkIPAddress(this); checkGateway(this);"/>
+                            <input id="mySubmit" type="submit" value="Generate" class="hidden" onclick="event.preventDefault(); checkSwitchFields(this);"/>
                         </div>
                     </div>
 

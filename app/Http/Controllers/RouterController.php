@@ -40,6 +40,23 @@ class RouterController extends Controller {
         $dl->addRouter($request->input('name'), $request->input('model'), $request->input('firmware'), $request->input('ports'), $request->input('serialNumber'), $userID);
         return Redirect::to(route('router.index'));
     }
+    
+    public function search(Request $request) {
+        $dl = new DataLayer();
+        $userID = Auth::user()->id;
+        $routers_list = $dl->searchRouters($request->input('keyword'), $userID);
+        
+        return view('router.routerList')->with('routers_list', $routers_list);
+    }
+    
+    public function list() {
+        
+        $dl = new DataLayer();
+        $userID = Auth::user()->id;
+        $routers_list = $dl->listRouters($userID);
+        
+        return view('router.routerList')->with('routers_list', $routers_list);
+    }
 
     public function destroy($serialNumber) {
 

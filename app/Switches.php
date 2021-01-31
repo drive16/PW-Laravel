@@ -20,4 +20,12 @@ class Switches extends Model
     public function configuration() {
         return $this->hasOne('NetworkConfigurator\SwitchConfiguration', 'deviceID');
     }
+    
+    public function getName() {
+        return $this->name;
+    }
+    
+    public function getSN() {
+        return $this->serialNumber;
+    }
 }

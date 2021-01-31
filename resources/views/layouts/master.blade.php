@@ -12,12 +12,19 @@
         <script src="http://code.jquery.com/jquery.js"></script>
         <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
         <script src="{{ url('/') }}/js/myScript.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
         <script type="text/javascript" class="init">
-            $(document).ready(function () {
-               $('#myTable').DataTable(); 
-            });
+$(document).ready(function () {
+    $('#myTable').DataTable();
+});
+        </script>
+
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+            })
         </script>
     </head>
 
@@ -70,7 +77,7 @@
                 </h1>
             </header>
         </div>
-        
+
         @yield('corpo')
     </body>
 

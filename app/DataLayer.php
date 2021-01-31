@@ -135,5 +135,32 @@ class DataLayer extends Model {
         $router = $this->findRouterBySerial($serialNumber);
         return $router->model;
     }
+    
+    public function searchSwitches($keyword, $user) {
+        $switches_list = $this->listSwitches($user);
+        
+        $match = array();
+        foreach ($switches_list as $switches) {
+            if(strpos($switches->name, $keyword) !== false || strpos($switches->serialNumber, $keyword) !== false) {
+                $match[] = $switches;
+            }
+        }
+        
+        return $match;
+    }
+    
+    public function searchRouters($keyword, $user) {
+        $routers_list = $this->listRouters($user);
+        
+        $match = array();
+        foreach ($routers_list as $routers) {
+            if(strpos($routers->name, $keyword) !== false || strpos($routers->serialNumber, $keyword) !== false) {
+                $match[] = $routers;
+            }
+        }
+        
+        return $match;
+    }
+
 
 }

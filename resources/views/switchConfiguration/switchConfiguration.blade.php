@@ -129,7 +129,7 @@
                 <div class="form-group" id="subnetmask-configuration" style="display: none">
                     <label for="subnetmask" class="col-md-3">Subnet Mask</label>
                     <div class="col-sm-9">
-                        <select class="form-control" id="subnetmask" name="subnetmask"><option value="0.255.255.255">255.0.0.0</option><option value="0.0.255.255">255.255.0.0</option><option value="0.0.0.255" selected data-default>255.255.255.0</option></select>  
+                        <select class="form-control" id="subnetmask" name="subnetmask"><option value="" selected data-default>{{ trans('labels.selectSubnet') }}</option><option>255.0.0.0</option><option>255.255.0.0</option><option>255.255.255.0</option></select>  
                     </div>
                 </div>
 
@@ -156,6 +156,7 @@
             </form>
         </div>
     </div>
+    
     <script>
         $('li').click(function () {
             $('.highlight').removeClass('highlight');

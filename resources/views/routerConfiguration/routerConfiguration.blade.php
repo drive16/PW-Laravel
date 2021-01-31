@@ -8,7 +8,7 @@
 
 @section('left_navbar')
 <li><a href="{{ route('home') }}">Home</a></li>
-<li class="active"><a href="{{ route('router.index') }}">Routers</a></li>
+<li><a href="{{ route('router.index') }}">Routers</a></li>
 <li><a href="{{ route('switch.index') }}">Switches</a></li>
 <li class="dropdown">
     <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ trans('labels.quickConfiguration') }}<b class="caret"></b></a>
@@ -62,7 +62,7 @@
                 <div class="form-group" id="subnetmask-configuration" style="display: none">
                     <label for="subnetmask" class="col-md-3">Subnet Mask</label>
                     <div class="col-sm-9">
-                        <select class="form-control" id="subnetmask" name="subnetmask"><option>255.0.0.0</option><option>255.255.0.0</option><option selected data-default>255.255.255.0</option><option>255.255.255.128</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.255.248</option><option>255.255.255.252</option><option>255.255.255.254</option></select>
+                        <select class="form-control" id="subnetmask" name="subnetmask"><option value="" selected data-default>{{ trans('labels.selectSubnet') }}</option><option>255.0.0.0</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.128</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.255.248</option><option>255.255.255.252</option><option>255.255.255.254</option></select>
                     </div>
                 </div>
 
@@ -80,7 +80,7 @@
                     </div>
                 </div>
 
-                <div class="form-group" id="routing-configuration" style="display: none" onclick="showOSPF()">
+                <div class="form-group" id="routing-configuration" style="display: none" onclick="showRouting()">
                     <label for="routingprotocol" class="col-md-3">{{ trans('labels.routingProtocol') }}</label>
                     <div class="col-xs-9">
                         <select class="form-control" id="routingprotocol" name="routingprotocol"><option value="" selected data-default>{{ trans('labels.selectRouting') }}</option><option value="ospf">OSPF</option></select>
@@ -96,26 +96,16 @@
 
                 <div class="form-group" id="network-configuration" style="display: none">
                     <label for="network" class="col-md-3">Network</label>
-                    <div class="col-xs-9">
-                        <input class="form-control" type="text" id="network" name="network" placeholder="Network">
-                        <span class="invalid-input" id="invalid-network"></span>
-                    </div>
-                </div>
-
-                <div class="form-group" id="network-configuration" style="display: none">
-                    <label for="network" class="col-md-3">Network</label>
                     <div class="col-sm-9">
-                        <select class="form-control" id="network" name="network"><option value="0.255.255.255">255.0.0.0</option><option value="0.0.255.255">255.255.0.0</option><option value="0.0.0.255" selected data-default>255.255.255.0</option></select>  
+                        <input class="form-control" type="text" id="network" name="network" placeholder="Network">  
+                        <span class="invalid-input" id="invalid-network"></span>
                     </div>
                 </div>
 
                 <div class="form-group" id="interfaceButton" style="display: none">
                     <div class="col-sm-9 col-sm-offset-3">
                         <label for="interfaceConfigButton" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-download"></span> {{ trans('labels.quickConfigButton') }}</label>
-                        <input id="interfaceConfigButton" type="submit" value="Generate" class="hidden" onclick="event.preventDefault();
-                                $.when($.ajax(checkIPAddress(this))).then(function () {
-                                    checkInterfaceQuickConfiguration();
-                                })"/>
+                        <input id="interfaceConfigButton" type="submit" value="Generate" class="hidden" onclick="event.preventDefault(); checkInterfaceQuickConfiguration(this);"/>
                     </div>
                 </div>
 

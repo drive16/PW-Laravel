@@ -28,6 +28,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-10 col-xs-5">
+            <p><a class="btn btn-default" href="{{ route('router.list') }}"> {{ trans('labels.changeVisualization') }} </a></p>
             <p><a class="btn btn-default" href="{{ route('router.create') }}"><span class="glyphicon glyphicon-plus"></span> {{ trans('labels.routerInsert') }}</a></p>
         </div>
     </div>
@@ -74,23 +75,27 @@
                         <td> {{ $routers->serialNumber }} </td>
                         @if(!isset($routers->configuration))
                         <td>
-                            <a class="btn btn-default" disabled="disabled" href=""><span class="glyphicon glyphicon-ban-circle"></span> {{ trans('labels.showConfiguration') }}</a>
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="{{ trans('labels.configurationAbsent') }}">
+                                <a class="btn btn-default w-100" disabled="disabled" href=""><span class="glyphicon glyphicon-ban-circle"></span> {{ trans('labels.showConfiguration') }}</a>
+                            </span>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('router.edit', ['router' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-pencil"></span> {{ trans('labels.generateConfiguration') }}</a>
+                            <a class="btn btn-primary w-100" href="{{ route('router.edit', ['router' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-pencil"></span> {{ trans('labels.generateConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ route('router.destroy.confirm', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            <a class="btn btn-danger w-100" href="{{ route('router.destroy.confirm', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
                         </td>
                         @else
                         <td>
-                            <a class="btn btn-default" href="{{ route('router.config', ['serialNumber' => $routers->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
+                            <a class="btn btn-default w-100" href="{{ route('router.config', ['serialNumber' => $routers->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('router.delete.configuration', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
+                            <a class="btn btn-warning w-100" href="{{ route('router.delete.configuration', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" disabled="disabled" href="{{ route('router.destroy.confirm', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="{{ trans('labels.configurationPresent') }}">
+                                <a class="btn btn-danger w-100" disabled="disabled" href="{{ route('router.destroy.confirm', ['serialNumber' => $routers->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            </span>
                         </td>
                         @endif
                     </tr>

@@ -28,9 +28,8 @@
 <div class="container">
     <div class="row">
         <div class="col-md-offset-10 col-xs-5">
-            <p>
-                <a class="btn btn-default" href="{{ route('switch.create') }}"><span class="glyphicon glyphicon-plus"></span> {{ trans('labels.switchInsert') }}</a>
-            </p>
+            <p><a class="btn btn-default" href="{{ route('switch.list') }}"> {{ trans('labels.changeVisualization') }} </a></p>
+            <p><a class="btn btn-default" href="{{ route('switch.create') }}"><span class="glyphicon glyphicon-plus"></span> {{ trans('labels.switchInsert') }}</a></p>
         </div>
     </div>
     <div class="row">
@@ -66,7 +65,7 @@
                         </td>
                         @elseif($switches->model === 'C2960-S')
                         <td>
-                            <img id="<?php echo trim($switches['model'], ";"); ?>" src="/img/c2960-s.jpg ">
+                            <img id="<?php echo trim($switches['model'], ";"); ?>" src="/img/c2960-s.jpg">
                         </td>
                         @endif
                         <td> {{ $switches->name }} </td>
@@ -75,23 +74,27 @@
                         <td> {{ $switches->serialNumber }} </td>
                         @if(!isset($switches->configuration))
                         <td>
-                            <a class="btn btn-default" disabled="disabled" href=""><span class="glyphicon glyphicon-ban-circle"></span> {{ trans('labels.showConfiguration') }}</a>
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="{{ trans('labels.configurationAbsent') }}">
+                                <a class="btn btn-default w-100" disabled="disabled" href=""><span class="glyphicon glyphicon-ban-circle"></span> {{ trans('labels.showConfiguration') }}</a>
+                            </span>
                         </td>
                         <td>
-                            <a class="btn btn-primary" href="{{ route('switch.edit', ['switch' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-pencil"></span> {{ trans('labels.generateConfiguration') }}</a>
+                            <a class="btn btn-primary w-100" href="{{ route('switch.edit', ['switch' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-pencil"></span> {{ trans('labels.generateConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" href="{{ route('switch.destroy.confirm', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            <a class="btn btn-danger w-100" href="{{ route('switch.destroy.confirm', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
                         </td>
                         @else
                         <td>
-                            <a class="btn btn-default" href="{{ route('switch.config', ['serialNumber' => $switches->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
+                            <a class="btn btn-default w-100" href="{{ route('switch.config', ['serialNumber' => $switches->serialNumber]) }}"><span></span> {{ trans('labels.showConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-warning" href="{{ route('switch.delete.configuration', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
+                            <a class="btn btn-warning w-100" href="{{ route('switch.delete.configuration', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.deleteConfiguration') }}</a>
                         </td>
                         <td>
-                            <a class="btn btn-danger" disabled="disabled" href="{{ route('switch.destroy.confirm', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            <span class="d-inline-block" tabindex="0" data-toggle="tooltip" title="{{ trans('labels.configurationPresent') }}">
+                                <a class="btn btn-danger w-100" disabled="disabled" href="{{ route('switch.destroy.confirm', ['serialNumber' => $switches->serialNumber]) }}"><span class="glyphicon glyphicon-remove"></span> {{ trans('labels.delete') }}</a>
+                            </span>
                         </td>
                         @endif
                     </tr>

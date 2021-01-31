@@ -4,6 +4,46 @@
  * and open the template in the editor.
  */
 
+function checkDeviceFields(button) {
+    if(!checkHostname(button) && !checkUsername(button) && !checkPassword(button) && !checkDomainName(button) && !checkIPAddress(button) && !checkGateway(button)) {
+        button.form.submit();
+    }
+}
+
+function checkSwitchFields(button) {
+    if(!checkHostname(button) && !checkUsername(button) && !checkPassword(button) && !checkDomainName(button) && !checkInterfaceVlan(button) && !checkIPAddress(button) && !checkGateway(button)) {
+        button.form.submit();
+    }
+}
+
+function checkAddDevice(button) {
+    if(!checkName(button) && !checkModel(button) && !checkFirmware(button) && !checkSN(button) && !checkPorts(button)) {
+        button.form.submit();
+    }
+}
+
+function checkName(button) {
+    
+    name = (button.form.name.value).trim();
+    name_msg = document.getElementById('invalid-name');
+    name_msg.innerHTML = "";
+    
+    var regExp = new RegExp("[a-zA-Z\-0-9]");
+    var error = false;
+
+    if (name === "") {
+        name_msg.innerHTML = "The name field must not be empty!";
+        button.form.name.focus();
+        error = true;
+    } else if (!name.match(regExp)) {
+        name_msg.innerHTML = "The name field can contain only letters, digits and dashes!";
+        button.form.name.focus();
+        error = true;
+    }
+    
+    return error;
+}
+
 function checkSN(button) {
 
     serialNumber = (button.form.serialNumber.value).trim(); //elimino gli spazi superflui con la funzione trim()
@@ -23,10 +63,41 @@ function checkSN(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 
+}
+
+function checkModel(button) {
+    model = (button.form.model.value).trim();
+    model_msg = document.getElementById('select-model');
+    model_msg.innerHTML = "";
+    
+    var error = false;
+    
+    if (!model) {
+        model_msg.innerHTML = "You must select the model";
+        button.form.model.focus();
+        error = true;
+    } else {
+        return error;
+    }
+}
+
+function checkPorts(button) {
+    
+    ports = (button.form.ports.value).trim();
+    ports_msg = document.getElementById('select-ports');
+    ports_msg.innerHTML = "";
+    
+    var error = false;
+    
+    if (!ports) {
+        ports_msg.innerHTML = "You must select the number of ports";
+        button.form.ports.focus();
+        error = true;
+    } else {
+        return error;
+    }
 }
 
 function checkFirmware(button) {
@@ -48,9 +119,7 @@ function checkFirmware(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 }
 
 function checkHostname(button) {
@@ -71,10 +140,9 @@ function checkHostname(button) {
         button.form.hostname.focus();
         error = true;
     }
+    
+    return error;
 
-    if (!error) {
-        button.form.submit();
-    }
 }
 
 function checkUsername(button) {
@@ -95,10 +163,8 @@ function checkUsername(button) {
         button.form.username.focus();
         error = true;
     }
-
-    if (!error) {
-        button.form.submit();
-    }
+    
+    return error;
 }
 
 function checkPassword(button) {
@@ -115,9 +181,7 @@ function checkPassword(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 }
 
 
@@ -140,9 +204,7 @@ function checkDomainName(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 }
 
 function checkIPAddress(button) {
@@ -164,9 +226,7 @@ function checkIPAddress(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 }
 
 function checkGateway(button) {
@@ -188,9 +248,7 @@ function checkGateway(button) {
         error = true;
     }
 
-    if (!error) {
-        button.form.submit();
-    }
+    return error;
 }
 
 function checkNetwork(button) {
@@ -229,6 +287,27 @@ function checkSwitchInterfaceQuickConfiguration(button) {
     } else if (!error) {
         button.form.submit();
     }
+}
+
+function checkInterfaceVlan(button) {
+    interface = (button.form.interface.value).trim();
+    interface_msg = document.getElementById('invalid-interface');
+    interface_msg.innerHTML = "";
+
+    var regExp = new RegExp("^[1-4][0-9]{0,3}$");
+    var error = false;
+
+    if (interface === "") {
+        interface_msg.innerHTML = "The interface field must not be empty!";
+        button.form.interface.focus();
+        error = true;
+    } else if (!interface.match(regExp)) {
+        interface_msg.innerHTML = "The interface field must contain an integer between 1 and 4094!";
+        button.form.interface.focus();
+        error = true;
+    }
+
+    return error;
 }
 
 function checkInterfaceQuickConfiguration(button) {
@@ -291,6 +370,9 @@ function configurationForm(str) {
         document.getElementById('switchport-configuration').style.display = "";
         document.getElementById('speed-configuration').style.display = "";
         document.getElementById('portfast-configuration').style.display = "";
+        document.getElementById('network-configuration').style.display = "none";
+        document.getElementById('area-configuration').style.display = "none";
+        document.getElementById('subnetmask-configuration').style.display = "none";
     } else if (str === "stp-form") {
         document.getElementById('interfaceButton').style.display = "none";
         document.getElementById('spanningButton').style.display = "";
@@ -306,6 +388,9 @@ function configurationForm(str) {
         document.getElementById('priority-configuration').style.display = "";
         document.getElementById('routing-configuration').style.display = "none";
         document.getElementById('vlan-configuration').style.display = "none";
+        document.getElementById('network-configuration').style.display = "none";
+        document.getElementById('area-configuration').style.display = "none";
+        document.getElementById('subnetmask-configuration').style.display = "none";
     } else {
         document.getElementById('interfaceButton').style.display = "none";
         document.getElementById('spanningButton').style.display = "none";
@@ -335,16 +420,21 @@ function routerConfigurationForm(str) {
         document.getElementById('interface-configuration').style.display = "";
         document.getElementById('subnetmask-configuration').style.display = "";
         document.getElementById('speed-configuration').style.display = "";
-        document.getElementById('address-configuration').style.display = ""; 
+        document.getElementById('address-configuration').style.display = "";
+        document.getElementById('network-configuration').style.display = "none";
+        document.getElementById('area-configuration').style.display = "none";
     } else if (str === "routing-form") {
         document.getElementById('interfaceButton').style.display = "none";
         document.getElementById('routingButton').style.display = "";
         document.getElementById('routing-configuration').style.display = "";
         document.getElementById('ports-selection').style.display = "none";
+        document.getElementById('duplex-configuration').style.display = "none";
         document.getElementById('interface-configuration').style.display = "none";
         document.getElementById('subnetmask-configuration').style.display = "none";
         document.getElementById('speed-configuration').style.display = "none";
         document.getElementById('address-configuration').style.display = "none";
+        document.getElementById('network-configuration').style.display = "none";
+        document.getElementById('area-configuration').style.display = "none";
     }
 }
 
@@ -375,6 +465,19 @@ function showBPDU() {
 }
 
 function showOSPF() {
+    var routingSelected = document.getElementById('routingprotocol').value;
+    if (routingSelected === "ospf") {
+        document.getElementById('network-configuration').style.display = "";
+        document.getElementById('area-configuration').style.display = "";
+        document.getElementById('subnetmask-configuration').style.display = "";
+    } else {
+        document.getElementById('network-configuration').style.display = "none";
+        document.getElementById('area-configuration').style.display = "none";
+        document.getElementById('subnetmask-configuration').style.display = "none";
+    }
+}
+
+function showRouting() {
     var routingSelected = document.getElementById('routingprotocol').value;
     if (routingSelected === "ospf") {
         document.getElementById('network-configuration').style.display = "";

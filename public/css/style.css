@@ -146,3 +146,8 @@ ul.list-group li:focus {
     max-width: 100%;
     height: auto;
 }
+
+.right {
+    float: right;
+}
+

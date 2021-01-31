@@ -52,7 +52,7 @@
                     <dd>aaa authorization exec default local</dd>
                 </dl>
                 <dl>
-                    <dd>interface {{ $configuration->interface }}</dd>
+                    <dd>interface vlan {{ $configuration->interface }}</dd>
                     <dd>&ensp;ip address {{ $configuration->ipAddress }} {{ $configuration->subnetMask }}</dd>
                 </dl>
                 <dl>
@@ -73,7 +73,7 @@
                     <td><a class="btn btn-info" onclick="saveTextAsFile()"><span class="glyphicon glyphicon-download-alt"></span> {{ trans('labels.saveText')}}</a></td>
                 </tr>
             </tbody>
-        </div>   
+        </div>
     </div>
 </div>
 <script type="text/javascript">

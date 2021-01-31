@@ -51,7 +51,7 @@
                     <dd>&ensp;switchport access vlan {{ $vlan }}</dd>
                     <dd>&ensp;speed {{ $speed }}</dd>
                     <dd>&ensp;duplex {{ $duplex }}</dd>
-                    
+
                     @elseif($portfast === 'on' && $bpduguard === 'on' && $switchport === 'trunk')
                     <dd>&ensp;switchport mode {{ $switchport }}</dd>
                     <dd>&ensp;speed {{ $speed }}</dd>
@@ -84,7 +84,7 @@
             </div>
         </div>
 
-        <div class="col-md-offset-3 col-md-6">
+        <div class="container" align="center">
             <tbody>
                 <tr>
                     <td>{{ trans('labels.saveAs') }}</td>
@@ -92,6 +92,10 @@
                     <td><a class="btn btn-info" onclick="saveTextAsFile()">{{ trans('labels.saveText')}}</a></td>
                 </tr>
             </tbody>
+            <form method="post" action="{{ route('payment') }}">
+                @csrf
+                <button class="btn">{{ trans('labels.donate') }}</button>
+            </form>
         </div>
     </div>
 </div>

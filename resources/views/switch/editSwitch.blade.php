@@ -35,6 +35,7 @@
                         <label for="name" class="col-md-3">{{ trans('labels.name') }}</label>
                         <div class="col-sm-9">
                             <input class="form-control" type="text" id="name" name="name" placeholder="{{ trans('labels.switchName') }}">
+                            <span class="invalid-input" id="invalid-name"></span>
                         </div>
                     </div>
                 
@@ -42,6 +43,7 @@
                         <label for="model" class="col-md-3">{{ trans('labels.model') }}</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="model" name="model"><option selected>{{ trans('labels.model') }}</option><option>C2960-X</option><option>C2960-S</option></select>
+                            <span class="invalid-input" id="select-model"></span>
                         </div>
                     </div>
                 
@@ -57,6 +59,7 @@
                         <label for="ports" class="col-md-3">{{ trans('labels.ports') }}</label>
                         <div class="col-sm-9">
                             <select class="form-control" id="ports" name="ports"><option selected>24</option><option>48</option></select>
+                            <span class="invalid-input" id="select-ports"></span>
                         </div>
                     </div>
 
@@ -71,7 +74,7 @@
                     <div class="form-group">
                         <div class="col-sm-9 col-sm-offset-3">
                             <label for="mySubmit" class="btn btn-primary btn-large btn-block"><span class="glyphicon glyphicon-save"></span> {{ trans('labels.add') }}</label>
-                            <input id="mySubmit" type="submit" value="Create" class="hidden" onclick="event.preventDefault(); checkFirmware(this); checkSN(this);"/>
+                            <input id="mySubmit" type="submit" value="Create" class="hidden" onclick="event.preventDefault(); checkAddDevice(this);"/>
                         </div>
                     </div>
 

@@ -40,7 +40,7 @@
                 @elseif($routingprotocol === 'ospf')
                 <dl>
                     <dd>router ospf 1</dd>
-                    <dd>&ensp;network {{ $network }} area {{ $area }}</dd>
+                    <dd>&ensp;network {{ $network }} {{ $subnetmask }} area {{ $area }}</dd>
                 </dl>
                 @endif
             </div>
